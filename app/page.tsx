@@ -175,7 +175,7 @@ export default function NiharikaSite() {
 
   // HERO SECTION with Slideshow
   const heroSection = (
-    <div className="relative h-screen overflow-hidden pt-20">
+    <div className="relative h-screen overflow-hidden" style={{ paddingTop: '80px' }}>
       {heroImages.map((slide, idx) => (
         <div key={idx} className={`absolute inset-0 transition-opacity duration-1000 ${idx === heroIndex ? 'opacity-100' : 'opacity-0'}`}>
           <img src={slide.img} alt="" className="w-full h-full object-cover" />
@@ -191,8 +191,8 @@ export default function NiharikaSite() {
         <img src="/niharika-logo.png" alt="" className="w-full h-full object-contain" />
       </div>
 
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-        <div className="w-48 h-48 md:w-64 md:h-64 mb-8 animate-bounce" style={{ animationDuration: '3s' }}>
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 pt-10">
+        <div className="w-48 h-48 md:w-64 md:h-64 mb-8 md:mb-12 animate-bounce" style={{ animationDuration: '3s' }}>
           <img src="/niharika-logo.png" alt="Niharika" className="w-full h-full object-contain drop-shadow-2xl" />
         </div>
 
