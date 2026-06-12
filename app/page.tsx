@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X, MessageSquare, Mail, Phone, MapPin, Calendar, Clock, ChevronDown, Award, Heart, Users, BookOpen, TrendingUp, Star, Target, Globe } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, MessageSquare, Mail, Phone, MapPin, Calendar, Clock, ChevronDown, Award, Heart, Users, BookOpen, TrendingUp, Star, Target, Globe, ChevronRight, ChevronLeft, Zap, Lightbulb, Shield, Smile } from 'lucide-react';
 
 export default function NiharikaSite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,6 +15,10 @@ export default function NiharikaSite() {
   const [ceremonyGalleryIndex, setCeremonyGalleryIndex] = useState(0);
   const [scholarshipGalleryIndex, setScholarshipGalleryIndex] = useState(0);
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [expandedFAQ, setExpandedFAQ] = useState(null);
+  const [visibleStats, setVisibleStats] = useState({});
+  const [hoveredTeam, setHoveredTeam] = useState(null);
+  const statsRef = useRef({});
 
   // Countdown Timer
   useEffect(() => {
@@ -42,6 +46,21 @@ export default function NiharikaSite() {
       setHomeSlideIndex(prev => (prev + 1) % homeSlides.length);
     }, 4000);
     return () => clearInterval(slideTimer);
+  }, []);
+
+  // Rotating Quotes
+  const quotes = [
+    { text: "Education is the most powerful weapon which you can use to change the world.", author: "- Nelson Mandela" },
+    { text: "Invest in yourself. Your education is the best investment you can make.", author: "- Unknown" },
+    { text: "An investment in knowledge pays the best interest.", author: "- Benjamin Franklin" },
+    { text: "Education is not the filling of a pail, but the lighting of a fire.", author: "- William Butler Yeats" },
+  ];
+
+  useEffect(() => {
+    const quoteTimer = setInterval(() => {
+      setQuoteIndex(prev => (prev + 1) % quotes.length);
+    }, 6000);
+    return () => clearInterval(quoteTimer);
   }, []);
 
   const whatsappLink = (message) => {
@@ -232,6 +251,89 @@ export default function NiharikaSite() {
         </div>
       </section>
 
+      {/* ===== ROTATING QUOTE ===== */}
+      <section className="py-12 px-4 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <div className="min-h-24 flex items-center justify-center">
+            <div className="transition-all duration-700 opacity-100">
+              <p className="text-2xl md:text-3xl font-bold mb-4 italic">"{quotes[quoteIndex].text}"</p>
+              <p className="text-lg font-semibold text-blue-100">{quotes[quoteIndex].author}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PROGRAMS & INITIATIVES ===== */}
+      <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">Our Programs</h2>
+          <p className="text-center text-gray-600 mb-12 text-lg">Comprehensive support across education, skills, and community development</p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: BookOpen, title: 'Scholarship Support', desc: '700+ students awarded', color: 'from-blue-500 to-blue-600' },
+              { icon: Users, title: 'Mentorship', desc: 'Expert guidance & coaching', color: 'from-green-500 to-green-600' },
+              { icon: Zap, title: 'Skill Development', desc: 'Technical & soft skills', color: 'from-yellow-500 to-yellow-600' },
+              { icon: Heart, title: 'Community Care', desc: 'Healthcare & welfare', color: 'from-red-500 to-red-600' },
+            ].map((program, idx) => (
+              <div key={idx} className={`bg-gradient-to-br ${program.color} text-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:scale-105 transition transform duration-300`}>
+                <program.icon size={40} className="mb-4" />
+                <h3 className="text-xl font-bold mb-2">{program.title}</h3>
+                <p className="text-sm opacity-90">{program.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== IMPACT TIMELINE ===== */}
+      <section className="py-16 px-4 bg-gray-900">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-black text-center text-white mb-12">Our Journey</h2>
+          <div className="space-y-8">
+            {[
+              { year: '2026', title: 'Foundation Launched', desc: 'Niharika Foundation officially established on 24th May, 2026', icon: '🎯' },
+              { year: '2026', title: 'Medha Samman 2026', desc: 'First ceremony awarding 700+ outstanding scholars', icon: '🏆' },
+              { year: 'Future', title: 'Expansion', desc: 'Reaching 5000+ students across Odisha', icon: '🚀' },
+              { year: 'Future', title: 'Excellence', desc: 'Building generations of empowered leaders', icon: '⭐' },
+            ].map((milestone, idx) => (
+              <div key={idx} className="flex gap-6 items-start animate-fadeIn" style={{ animationDelay: `${idx * 100}ms` }}>
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-2xl">
+                    {milestone.icon}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="text-white font-bold text-lg">{milestone.year}</div>
+                  <div className="text-white font-bold text-xl mb-2">{milestone.title}</div>
+                  <div className="text-gray-300">{milestone.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== VALUES SECTION ===== */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">Our Core Values</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { icon: Lightbulb, title: 'Excellence', color: 'from-yellow-500 to-yellow-600' },
+              { icon: Shield, title: 'Integrity', color: 'from-blue-500 to-blue-600' },
+              { icon: Smile, title: 'Compassion', color: 'from-red-500 to-red-600' },
+              { icon: Target, title: 'Impact', color: 'from-green-500 to-green-600' },
+            ].map((value, idx) => (
+              <div key={idx} className={`text-center p-8 rounded-xl bg-gradient-to-br ${value.color} text-white hover:shadow-xl transition transform hover:scale-105`}>
+                <value.icon size={48} className="mx-auto mb-4" />
+                <h3 className="text-2xl font-bold">{value.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== MEDHA SAMMAN 2026 ===== */}
       <section id="medha-samman" className="py-16 px-4 bg-gradient-to-b from-yellow-50 to-white">
         <div className="max-w-7xl mx-auto">
@@ -357,6 +459,92 @@ export default function NiharikaSite() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition">
                   <p className="text-white font-bold">{image.title}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAQ SECTION ===== */}
+      <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">Frequently Asked Questions</h2>
+          <p className="text-center text-gray-600 mb-12 text-lg">Find answers to common questions about our programs</p>
+
+          <div className="space-y-4">
+            {[
+              { q: 'Who is eligible for Medha Samman scholarship?', a: 'Students who scored 90% and above in 10th Board Exam are eligible. Applications are open to all students in Odisha.' },
+              { q: 'How do I apply?', a: 'You can register through our website form or visit our office in Baleshwar. Registration is free.' },
+              { q: 'What is the scholarship amount?', a: 'Scholarship amounts vary based on merit and need assessment. Each scholar receives financial support, books, and mentorship.' },
+              { q: 'When is the next ceremony?', a: 'Our countdown timer shows exactly when the next scholarship announcement and ceremony will happen.' },
+            ].map((item, idx) => (
+              <div key={idx} className="border-2 border-gray-300 rounded-lg overflow-hidden hover:border-red-600 transition">
+                <button
+                  onClick={() => setExpandedFAQ(expandedFAQ === idx ? null : idx)}
+                  className="w-full px-6 py-4 bg-white flex justify-between items-center hover:bg-gray-50 transition"
+                >
+                  <span className="font-bold text-gray-800 text-left">{item.q}</span>
+                  <ChevronDown size={20} className={`transition transform ${expandedFAQ === idx ? 'rotate-180' : ''}`} />
+                </button>
+                {expandedFAQ === idx && (
+                  <div className="px-6 py-4 bg-gray-50 border-t-2 border-gray-300 text-gray-700">
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TEAM SECTION ===== */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">Leadership Team</h2>
+          <p className="text-center text-gray-600 mb-12 text-lg">Dedicated individuals driving our mission</p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'Rutuick Jee', role: 'Founder & Chairman', icon: '👨‍💼' },
+              { name: 'Muralidhar Nayak', role: 'President', icon: '👨‍💼' },
+              { name: 'Ardhendu Sekhar Das', role: 'Vice-President', icon: '👨‍💼' },
+              { name: 'Debadutta Das', role: 'General Secretary', icon: '👨‍💼' },
+            ].map((member, idx) => (
+              <div
+                key={idx}
+                onMouseEnter={() => setHoveredTeam(idx)}
+                onMouseLeave={() => setHoveredTeam(null)}
+                className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl text-center hover:shadow-xl transition transform hover:scale-105 cursor-pointer"
+              >
+                <div className="text-5xl mb-4">{member.icon}</div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{member.name}</h3>
+                <p className="text-gray-600 font-semibold text-sm">{member.role}</p>
+                {hoveredTeam === idx && (
+                  <div className="mt-4 text-xs text-gray-600 animate-fadeIn">
+                    Leading with vision & dedication
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== IMPACT NUMBERS ===== */}
+      <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">Our Impact</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { stat: '700+', label: 'Scholars Awarded', color: 'from-red-500 to-red-600', icon: '🎓' },
+              { stat: '50+', label: 'Villages Reached', color: 'from-green-500 to-green-600', icon: '🏘️' },
+              { stat: '100%', label: 'Transparent', color: 'from-blue-500 to-blue-600', icon: '✓' },
+              { stat: '2026', label: 'Foundation Year', color: 'from-yellow-500 to-yellow-600', icon: '📅' },
+            ].map((impact, idx) => (
+              <div key={idx} className={`bg-gradient-to-br ${impact.color} text-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition transform hover:scale-105`}>
+                <div className="text-5xl mb-4">{impact.icon}</div>
+                <div className="text-4xl font-black mb-2">{impact.stat}</div>
+                <p className="font-semibold text-sm opacity-90">{impact.label}</p>
               </div>
             ))}
           </div>
