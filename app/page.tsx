@@ -113,38 +113,6 @@ export default function NiharikaSite() {
 
   return (
     <div className="w-full bg-white overflow-x-hidden">
-      {/* ===== NAVBAR ===== */}
-      <nav className="sticky top-0 z-50 bg-gradient-to-r from-red-700 to-red-600 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/niharika-logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
-            <div>
-              <div className="font-bold text-white text-sm">NIHARIKA</div>
-              <div className="text-xs text-red-100">Foundation</div>
-            </div>
-          </div>
-          <div className="hidden md:flex gap-6 text-white font-semibold">
-            <a href="#home" className="hover:text-yellow-300 transition">Home</a>
-            <a href="#about" className="hover:text-yellow-300 transition">About</a>
-            <a href="#medha-samman" className="hover:text-yellow-300 transition">Medha Samman</a>
-            <a href="#gallery" className="hover:text-yellow-300 transition">Gallery</a>
-            <a href="#contact" className="hover:text-yellow-300 transition">Contact</a>
-          </div>
-          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-red-800 px-4 py-4 space-y-2">
-            <a href="#home" className="block text-white hover:text-yellow-300">Home</a>
-            <a href="#about" className="block text-white hover:text-yellow-300">About</a>
-            <a href="#medha-samman" className="block text-white hover:text-yellow-300">Medha Samman</a>
-            <a href="#gallery" className="block text-white hover:text-yellow-300">Gallery</a>
-            <a href="#contact" className="block text-white hover:text-yellow-300">Contact</a>
-          </div>
-        )}
-      </nav>
-
       {/* ===== HERO WITH AUTO-SLIDESHOW & GROWTH THEME ===== */}
       <section id="home" className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center overflow-hidden pt-20">
         {/* Animated Background Elements */}
