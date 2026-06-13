@@ -251,6 +251,27 @@ export default function NiharikaSite() {
         </div>
       </section>
 
+      {/* ===== IMPACT COUNTERS ===== */}
+      <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">Live Impact Metrics</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { icon: '🎓', label: 'Students Supported', stat: '700+', color: 'from-blue-500 to-blue-600' },
+              { icon: '📚', label: 'Books Distributed', stat: '15K+', color: 'from-green-500 to-green-600' },
+              { icon: '🤝', label: 'Volunteers', stat: '45+', color: 'from-yellow-500 to-yellow-600' },
+              { icon: '📍', label: 'Districts Served', stat: '12+', color: 'from-purple-500 to-purple-600' },
+            ].map((metric, idx) => (
+              <div key={idx} className={`bg-gradient-to-br ${metric.color} text-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-110 text-center`}>
+                <div className="text-5xl mb-4">{metric.icon}</div>
+                <div className="text-4xl font-black mb-2 animate-pulse">{metric.stat}</div>
+                <p className="font-semibold text-sm opacity-90">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== ROTATING QUOTE ===== */}
       <section className="py-12 px-4 bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="max-w-4xl mx-auto text-center text-white">
@@ -652,6 +673,197 @@ export default function NiharikaSite() {
           </div>
         </div>
       )}
+
+      {/* ===== SOCIAL PROOF - TESTIMONIALS ===== */}
+      <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">What People Say</h2>
+          <p className="text-center text-gray-600 mb-12 text-lg">Hear from scholars, volunteers, and supporters</p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Shreya Panda', role: 'Medha Samman Scholar 2026', text: 'The scholarship from Niharika Foundation helped me pursue my engineering dreams. The support and mentorship made all the difference.', icon: '🎓' },
+              { name: 'Amit Nayak', role: 'Volunteer Mentor', text: 'Volunteering with Niharika has been one of the most rewarding experiences. Seeing students\' growth is incredibly fulfilling.', icon: '🤝' },
+              { name: 'Dipali Mahanta', role: 'CSR Partner (Company)', text: 'Partnering with Niharika Foundation for our CSR initiatives has created genuine impact. Transparent and impactful work.', icon: '💼' },
+              { name: 'Ravi Kumar', role: 'Life Member', text: 'Being part of the Life Membership program gives me a sense of belonging to a purposeful community working for real change.', icon: '💪' },
+              { name: 'Neha Singh', role: 'Scholarship Parent', text: 'My son received mentorship that transformed his approach to studies. He scored 97% in 12th thanks to the support.', icon: '👨‍👩‍👧' },
+              { name: 'Subhash Das', role: 'Community Elder', text: 'Niharika Foundation has brought hope to many families in our village. They truly care about education and development.', icon: '👴' },
+            ].map((testimonial, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition transform hover:translate-y-[-8px] p-6 border-t-4 border-red-600">
+                <div className="text-5xl mb-4">{testimonial.icon}</div>
+                <p className="text-gray-700 italic mb-6 leading-relaxed">"{testimonial.text}"</p>
+                <div className="pt-6 border-t border-gray-200">
+                  <p className="font-bold text-gray-800">{testimonial.name}</p>
+                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FOUNDER STORY ===== */}
+      <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-700">Founder\'s Vision</h2>
+              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                <span className="font-bold text-2xl text-blue-600">Rutuick Jee</span>, the visionary founder of Niharika Foundation, started this journey with a simple belief: education has the power to transform lives.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                {[
+                  { year: '2025', title: 'The Realization', desc: 'Noticed bright students unable to pursue education due to financial constraints in Odisha villages.' },
+                  { year: '2026', title: 'Foundation Launched', desc: 'Officially registered Niharika Foundation with a mission to support 1000+ students.' },
+                  { year: 'May 24, 2026', title: 'First Ceremony', desc: 'Successfully awarded scholarships to 700+ merit students in the inaugural Medha Samman 2026.' },
+                  { year: 'Future', title: 'Vision 2030', desc: 'Goal to reach 5000+ students and create a sustainable model for education support.' },
+                ].map((milestone, idx) => (
+                  <div key={idx} className="border-l-4 border-blue-600 pl-4 py-2">
+                    <div className="text-sm font-bold text-blue-600">{milestone.year}</div>
+                    <div className="font-bold text-gray-800">{milestone.title}</div>
+                    <div className="text-sm text-gray-600">{milestone.desc}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-blue-100 border-2 border-blue-600 rounded-lg p-6">
+                <p className="text-blue-900 font-semibold italic">
+                  "Education is not just about passing exams; it\'s about empowering individuals to become agents of change in their communities. That\'s what Niharika stands for."
+                </p>
+                <p className="text-blue-800 font-bold mt-3">— Rutuick Jee, Founder</p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-12 text-white text-center shadow-2xl">
+              <div className="text-8xl mb-6">👨‍💼</div>
+              <h3 className="text-3xl font-black mb-4">Rutuick Jee</h3>
+              <p className="text-xl font-bold mb-2">Founder & Chairman</p>
+              <p className="text-blue-100 mb-8">Visionary Leader | Education Advocate | Community Builder</p>
+              
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <div className="text-3xl font-black">700+</div>
+                  <p className="text-sm">Scholars Supported</p>
+                </div>
+                <div>
+                  <div className="text-3xl font-black">12+</div>
+                  <p className="text-sm">Districts Served</p>
+                </div>
+                <div>
+                  <div className="text-3xl font-black">₹50L+</div>
+                  <p className="text-sm">Scholarships Given</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TRUST & CREDIBILITY ===== */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black text-center mb-12 text-gray-800">Why Trust Niharika?</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { icon: '📋', title: 'Transparent', desc: 'Full financial transparency and regular reports' },
+              { icon: '✅', title: 'Verified', desc: 'Registered NGO with official documentation' },
+              { icon: '🎯', title: 'Impactful', desc: '100% of donations reach beneficiaries' },
+              { icon: '🤝', title: 'Accountable', desc: 'Regular impact assessments and updates' },
+            ].map((point, idx) => (
+              <div key={idx} className="text-center bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 border-2 border-gray-200 hover:border-green-600 hover:shadow-lg transition">
+                <div className="text-5xl mb-4">{point.icon}</div>
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{point.title}</h3>
+                <p className="text-gray-600 text-sm">{point.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== NEWSLETTER ===== */}
+      <section className="py-16 px-4 bg-gradient-to-r from-red-600 to-red-700 text-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl font-black mb-4">Stay Updated</h2>
+          <p className="text-xl text-red-100 mb-8">Get regular updates about our programs, success stories, and impact reports directly to your inbox.</p>
+          
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-6 py-3 rounded-full text-gray-800 font-semibold focus:outline-none"
+            />
+            <button className="px-8 py-3 bg-white text-red-600 rounded-full font-bold hover:shadow-lg transition transform hover:scale-105">
+              Subscribe
+            </button>
+          </div>
+          <p className="text-red-100 text-sm mt-4">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+      </section>
+
+      {/* ===== FOOTER ===== */}
+      <footer className="bg-gray-900 text-white py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <img src="/niharika-logo.png" alt="Niharika" className="h-10 w-10 object-contain" />
+                <div>
+                  <h3 className="text-xl font-black text-red-600">NIHARIKA</h3>
+                  <p className="text-xs text-gray-400">Foundation</p>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Empowering futures through quality education and community development in Odisha.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-bold text-lg mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-red-600 transition">Home</a></li>
+                <li><a href="#about" className="hover:text-red-600 transition">About</a></li>
+                <li><a href="/impact" className="hover:text-red-600 transition">Impact</a></li>
+                <li><a href="/get-involved" className="hover:text-red-600 transition">Get Involved</a></li>
+                <li><a href="#contact" className="hover:text-red-600 transition">Contact</a></li>
+              </ul>
+            </div>
+
+            {/* Programs */}
+            <div>
+              <h4 className="font-bold text-lg mb-4">Programs</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#medha-samman" className="hover:text-red-600 transition">Medha Samman</a></li>
+                <li><a href="/get-involved" className="hover:text-red-600 transition">Membership</a></li>
+                <li><a href="/get-involved" className="hover:text-red-600 transition">Volunteering</a></li>
+                <li><a href="/get-involved" className="hover:text-red-600 transition">Internships</a></li>
+                <li><a href="/get-involved" className="hover:text-red-600 transition">CSR Partnership</a></li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-bold text-lg mb-4">Contact</h4>
+              <div className="space-y-3 text-gray-400 text-sm">
+                <p>Baleshwar, Odisha</p>
+                <p>Phone: +91 8763-979-798</p>
+                <p>Email: info@niharikafoundation.org</p>
+                <div className="flex gap-4 mt-4">
+                  <a href="https://wa.me/918763979798" className="text-green-500 hover:text-green-400 transition">WhatsApp</a>
+                  <a href="#" className="text-blue-400 hover:text-blue-300 transition">Facebook</a>
+                  <a href="#" className="text-blue-300 hover:text-blue-200 transition">Instagram</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2026 Niharika Foundation. All rights reserved. | Registered Trust | Transparency & Impact Focused</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
