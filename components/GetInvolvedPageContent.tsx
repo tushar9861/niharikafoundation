@@ -106,17 +106,23 @@ export function GetInvolvedPageContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 bg-gradient-to-b from-blue-600 to-blue-700 text-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-black mb-6">Get Involved</h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+      <section className="pt-20 pb-16 px-4 bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white relative overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-black mb-6 animate-slideInDown">Get Involved</h1>
+          <p className="text-xl text-red-100 max-w-3xl mx-auto animate-slideInUp" style={{animationDelay: '0.2s'}}>
             Join our mission to transform lives through education. Multiple ways to contribute your time, skills, and passion.
           </p>
         </div>
       </section>
 
       {/* Tab Navigation */}
-      <section className="sticky top-20 bg-white shadow-md z-30">
+      <section className="sticky top-20 bg-gradient-to-r from-red-50 to-orange-50 shadow-lg z-30 border-b-4 border-red-600">
         <div className="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-2 py-4">
           {[
             { id: 'membership', label: 'Membership Program', icon: Users },

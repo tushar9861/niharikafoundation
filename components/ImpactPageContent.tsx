@@ -57,10 +57,16 @@ export function ImpactPageContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 bg-gradient-to-b from-red-600 to-red-700 text-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-black mb-6">Our Impact</h1>
-          <p className="text-xl text-red-100 max-w-3xl mx-auto">
+      <section className="pt-20 pb-16 px-4 bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-black mb-6 animate-slideInDown">Our Impact</h1>
+          <p className="text-xl text-red-100 max-w-3xl mx-auto animate-slideInUp" style={{animationDelay: '0.2s'}}>
             Measuring success through lives transformed, futures brightened, and communities empowered through quality education.
           </p>
         </div>
@@ -72,12 +78,12 @@ export function ImpactPageContent() {
       </section>
 
       {/* Impact Metrics */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-black text-center mb-12 text-gray-800">Key Metrics</h2>
+          <h2 className="text-4xl font-black text-center mb-12 text-gray-800 animate-slideInDown">Key Metrics</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {impactMetrics.map((metric, idx) => (
-              <div key={idx} className={`bg-gradient-to-br ${metric.color} text-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105`}>
+              <div key={idx} className={`bg-gradient-to-br ${metric.color} text-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 animate-scalePopIn`} style={{animationDelay: `${idx * 100}ms`}}>
                 <metric.icon size={40} className="mb-4" />
                 <div className="text-4xl font-black mb-2">{metric.value}</div>
                 <p className="font-semibold text-sm opacity-90">{metric.label}</p>

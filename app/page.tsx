@@ -2,10 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, MessageSquare, Mail, Phone, MapPin, Calendar, Clock, ChevronDown, Award, Heart, Users, BookOpen, TrendingUp, Star, Target, Globe, ChevronRight, ChevronLeft, Zap, Lightbulb, Shield, Smile } from 'lucide-react';
+import { PhotoSlideshow } from '@/components/PhotoSlideshow';
+import { JoinNowModal } from '@/components/JoinNowModal';
+import { TechInnovationSection } from '@/components/TechInnovationSection';
+import { ImpactInfographics } from '@/components/ImpactInfographics';
 
 export default function NiharikaSite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedForm, setSelectedForm] = useState(null);
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
   const [countdownDays, setCountdownDays] = useState(7);
   const [countdownHours, setCountdownHours] = useState(0);
   const [countdownMinutes, setCountdownMinutes] = useState(0);
@@ -287,32 +292,32 @@ export default function NiharikaSite() {
       {/* ===== ABOUT SECTION ===== */}
       <section id="about" className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700">About Niharika Foundation</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">
+          <h2 className="text-4xl font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 animate-slideInDown">About Niharika Foundation</h2>
+          <p className="text-center text-gray-600 mb-12 text-lg animate-slideInUp" style={{animationDelay: '0.2s'}}>
             Founded on <span className="font-bold text-red-600">24th May, 2026</span> in Baleshwar, Odisha
           </p>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="animate-slideInLeft" style={{animationDelay: '0.3s'}}>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
               <p className="text-gray-700 mb-6 leading-relaxed">Provide quality education, support research, and empower individuals and communities to achieve their full potential.</p>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
               <p className="text-gray-700 mb-6 leading-relaxed">A world where every individual has access to education, equal opportunities, and the power to create positive change.</p>
               <div className="grid grid-cols-3 gap-4 mt-8">
-                <div className="bg-red-600 text-white p-6 rounded-xl text-center">
+                <div className="bg-gradient-to-br from-red-600 to-red-700 text-white p-6 rounded-xl text-center hover:shadow-xl transition transform hover:scale-110 hover:-translate-y-2 animate-scalePopIn" style={{animationDelay: '0.4s'}}>
                   <div className="text-3xl font-black">700+</div>
                   <div className="text-sm font-bold">Scholars 2026</div>
                 </div>
-                <div className="bg-green-600 text-white p-6 rounded-xl text-center">
+                <div className="bg-gradient-to-br from-green-600 to-green-700 text-white p-6 rounded-xl text-center hover:shadow-xl transition transform hover:scale-110 hover:-translate-y-2 animate-scalePopIn" style={{animationDelay: '0.5s'}}>
                   <div className="text-3xl font-black">50+</div>
                   <div className="text-sm font-bold">Villages</div>
                 </div>
-                <div className="bg-blue-600 text-white p-6 rounded-xl text-center">
+                <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-xl text-center hover:shadow-xl transition transform hover:scale-110 hover:-translate-y-2 animate-scalePopIn" style={{animationDelay: '0.6s'}}>
                   <div className="text-3xl font-black">100%</div>
                   <div className="text-sm font-bold">Transparent</div>
                 </div>
               </div>
             </div>
-            <img src="/ceremony-gallery/dsc09178.jpg" alt="Community" className="rounded-2xl shadow-2xl h-96 object-cover" />
+            <img src="/ceremony-gallery/dsc09178.jpg" alt="Community" className="rounded-2xl shadow-2xl h-96 object-cover animate-slideInRight hover:shadow-3xl transition-shadow duration-500" style={{animationDelay: '0.4s'}} />
           </div>
         </div>
       </section>
@@ -337,6 +342,9 @@ export default function NiharikaSite() {
           </div>
         </div>
       </section>
+
+      {/* ===== IMPACT INFOGRAPHICS ===== */}
+      <ImpactInfographics />
 
       {/* ===== ROTATING QUOTE ===== */}
       <section className="py-12 px-4 bg-gradient-to-r from-blue-600 to-blue-700">
@@ -420,6 +428,9 @@ export default function NiharikaSite() {
           </div>
         </div>
       </section>
+
+      {/* ===== TECHNOLOGY & INNOVATION ===== */}
+      <TechInnovationSection />
 
       {/* ===== MEDHA SAMMAN 2026 ===== */}
       <section id="medha-samman" className="py-16 px-4 bg-gradient-to-b from-yellow-50 to-white">
