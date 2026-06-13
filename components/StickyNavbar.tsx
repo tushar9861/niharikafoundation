@@ -1,19 +1,30 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 
 export function StickyNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
+      
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const navItems = [
     { label: 'Home', href: '/' },
@@ -26,59 +37,73 @@ export function StickyNavbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-white/90 backdrop-blur-md'}`}>
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img src="/niharika-logo.png" alt="Niharika" className="h-10 w-10 object-contain" />
-          <div>
-            <h1 className="text-xl font-black text-red-600">NIHARIKA</h1>
-            <p className="text-xs text-gray-600 leading-none">Foundation</p>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      scrolled 
+        ? 'bg-gradient-to-r from-red-600 to-red-700 shadow-2xl py-2' 
+        : 'bg-gradient-to-r from-red-500 via-red-600 to-red-700 py-4'
+    } ${scrollDirection === 'down' && scrolled ? '-translate-y-full' : 'translate-y-0'}`}>
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        {/* Logo with Animation */}
+        <a href="/" className="flex items-center gap-2 group cursor-pointer">
+          <div className="relative">
+            <img src="/niharika-logo.png" alt="Niharika" className="h-10 w-10 object-contain group-hover:scale-110 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
           </div>
-        </div>
+          <div>
+            <h1 className="text-lg font-black text-white drop-shadow-md group-hover:text-yellow-100 transition-colors duration-300">NIHARIKA</h1>
+            <p className="text-xs text-red-100 leading-none">Foundation</p>
+          </div>
+        </a>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
+        {/* Desktop Menu with Hover Effects */}
+        <div className="hidden lg:flex items-center gap-1">
+          {navItems.map((item, idx) => (
             <a
               key={item.label}
               href={item.href}
-              className="text-gray-700 hover:text-red-600 font-semibold transition-colors text-sm"
+              className="relative px-3 py-2 text-white font-semibold text-sm group hover:text-yellow-200 transition-colors duration-300"
+              style={{ animationDelay: `${idx * 50}ms` }}
             >
               {item.label}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300"></span>
             </a>
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button with Pulse Animation */}
         <button
           onClick={() => {
             const message = 'Hello! I want to join Niharika Foundation. Please provide more information.';
             window.location.href = `https://wa.me/918763979798?text=${encodeURIComponent(message)}`;
           }}
-          className="hidden md:block px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold hover:shadow-lg transition-all transform hover:scale-105"
+          className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-white text-red-600 rounded-full font-bold hover:shadow-2xl hover:scale-110 transition-all duration-300 relative overflow-hidden group"
         >
-          Join Now
+          <span className="relative z-10 flex items-center gap-2">
+            <Zap size={16} className="group-hover:animate-pulse" />
+            Join Now
+          </span>
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-orange-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
 
-        {/* Mobile Menu Button */}
+        {/* Hamburger Menu for Mobile/Tablet */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2"
+          className="lg:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-all duration-300"
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={24} className="animate-spin" style={{animationDuration: '0.3s'}} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile/Tablet Menu with Slide Animation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 animate-fadeIn">
-          <div className="flex flex-col p-4 gap-4">
-            {navItems.map((item) => (
+        <div className="lg:hidden bg-gradient-to-b from-red-600 to-red-700 border-t border-red-500/50 backdrop-blur-md animate-slideDown">
+          <div className="flex flex-col p-4 gap-2 max-w-7xl mx-auto">
+            {navItems.map((item, idx) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-700 hover:text-red-600 font-semibold transition-colors py-2"
+                className="text-white hover:bg-white/10 hover:translate-x-2 font-semibold transition-all duration-300 py-3 px-4 rounded-lg"
+                style={{ animationDelay: `${idx * 30}ms` }}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -90,7 +115,7 @@ export function StickyNavbar() {
                 window.location.href = `https://wa.me/918763979798?text=${encodeURIComponent(message)}`;
                 setMobileMenuOpen(false);
               }}
-              className="w-full px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold hover:shadow-lg transition-all mt-4"
+              className="w-full px-6 py-3 bg-white text-red-600 rounded-lg font-bold hover:shadow-lg transition-all mt-4 transform hover:scale-105"
             >
               Join Now
             </button>
