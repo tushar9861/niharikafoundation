@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { StickyNavbar } from '@/components/StickyNavbar'
 import { FloatingActionButtons } from '@/components/FloatingActionButtons'
+import { ChatWidget } from '@/components/ChatWidget'
 import { StructuredData } from '@/components/StructuredData'
 import './globals.css'
 
@@ -53,6 +54,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+        <ChatWidget />
         <FloatingActionButtons />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
