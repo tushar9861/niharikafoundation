@@ -140,54 +140,120 @@ export default function NiharikaSite() {
         )}
       </nav>
 
-      {/* ===== HERO WITH AUTO-SLIDESHOW ===== */}
-      <section id="home" className="relative h-screen bg-gray-900 flex items-center justify-center overflow-hidden pt-20">
-        {/* Auto-slideshow */}
-        <div className="absolute inset-0 w-full h-full">
+      {/* ===== HERO WITH AUTO-SLIDESHOW & GROWTH THEME ===== */}
+      <section id="home" className="relative min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center overflow-hidden pt-20">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating Growth Orbs */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        {/* Auto-slideshow with Enhanced Transitions */}
+        <div className="absolute inset-0 w-full h-full z-0">
           {homeSlides.map((slide, idx) => (
             <div
               key={idx}
-              className={`absolute inset-0 transition-opacity duration-1000 ${idx === homeSlideIndex ? 'opacity-100' : 'opacity-0'}`}
+              className={`absolute inset-0 transition-all duration-1200 ${idx === homeSlideIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
             >
               <img src={slide.img} alt={slide.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/50"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
             </div>
           ))}
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center text-white max-w-3xl px-4">
-          <div className="mb-12 flex justify-center">
-            <div className="w-40 h-40 rounded-full border-8 border-yellow-400 shadow-2xl overflow-hidden flex items-center justify-center bg-white"
+        {/* Hero Content with Animations */}
+        <div className="relative z-10 text-center text-white max-w-4xl px-4">
+          {/* Logo with Floating Animation */}
+          <div className="mb-12 flex justify-center animate-slideInLeft" style={{animationDelay: '0.2s'}}>
+            <div className="w-40 h-40 rounded-full border-8 border-gradient-to-r from-yellow-400 to-orange-400 shadow-2xl overflow-hidden flex items-center justify-center bg-gradient-to-br from-white to-gray-100 relative group"
               style={{
-                boxShadow: '0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(255,193,7,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)'
+                boxShadow: '0 20px 60px rgba(0,0,0,0.8), 0 0 60px rgba(255,193,7,0.8), inset 0 -4px 8px rgba(0,0,0,0.3)'
               }}
             >
-              <img src="/niharika-logo.png" alt="Niharika" className="w-36 h-36 object-contain animate-pulse" />
+              <img src="/niharika-logo.png" alt="Niharika" className="w-36 h-36 object-contain animate-float" />
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-black mb-4 drop-shadow-lg">NIHARIKA FOUNDATION</h1>
-          <p className="text-2xl md:text-3xl font-bold text-yellow-300 mb-6 drop-shadow-lg">Educational Charitable Trust • Odisha</p>
-          <p className="text-xl mb-8 drop-shadow-lg">Honoring Excellence • Encouraging Dreams • Building Future</p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <button onClick={() => setSelectedForm('registration')} className="px-8 py-4 bg-yellow-400 text-red-900 rounded-full font-bold text-lg hover:bg-yellow-300 transition transform hover:scale-105">
-              Register Now
+
+          {/* Main Title with Growth Theme */}
+          <h1 className="text-5xl md:text-7xl font-black mb-4 drop-shadow-lg animate-slideInRight" style={{animationDelay: '0.3s'}}>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-orange-300 to-red-400">NIHARIKA FOUNDATION</span>
+          </h1>
+
+          {/* Tagline */}
+          <p className="text-2xl md:text-3xl font-bold text-yellow-300 mb-6 drop-shadow-lg animate-slideInLeft" style={{animationDelay: '0.4s'}}>
+            Educational Charitable Trust • Odisha
+          </p>
+
+          {/* Mission with Growth Focus */}
+          <p className="text-lg md:text-xl mb-8 drop-shadow-lg leading-relaxed animate-slideInRight" style={{animationDelay: '0.5s'}}>
+            Empowering 700+ scholars through education • Building futures with technology • Nurturing growth in every student
+          </p>
+
+          {/* Growth & Innovation Focus */}
+          <div className="mb-8 p-6 bg-white/10 backdrop-blur border border-white/20 rounded-2xl animate-scalePopIn" style={{animationDelay: '0.6s'}}>
+            <p className="text-sm md:text-base text-yellow-100 mb-3 font-semibold">
+              🚀 Soon: AI-Powered Learning Platform • Technology Integration • Scholarship Marketplace
+            </p>
+            <p className="text-xs md:text-sm text-gray-300">
+              With your support, we're building the future of education in Odisha with cutting-edge technology, innovation, and personalized learning paths for every scholar.
+            </p>
+          </div>
+
+          {/* CTA Buttons with Animations */}
+          <div className="flex gap-4 justify-center flex-wrap animate-slideInUp" style={{animationDelay: '0.7s'}}>
+            <button 
+              onClick={() => setIsJoinModalOpen(true)} 
+              className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-red-900 rounded-full font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-110 relative overflow-hidden group"
+            >
+              <span className="relative z-10">Register Now</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
-            <a href="#medha-samman" className="px-8 py-4 bg-white text-red-900 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105">
-              Explore More
+            <a 
+              href="#medha-samman" 
+              className="px-8 py-4 bg-white/90 hover:bg-white text-red-900 rounded-full font-bold text-lg transition-all transform hover:scale-110 hover:shadow-2xl"
+            >
+              Learn More
             </a>
+          </div>
+
+          {/* Growth Statistics Teaser */}
+          <div className="mt-12 grid grid-cols-3 gap-4 text-center animate-slideInUp" style={{animationDelay: '0.8s'}}>
+            <div className="animate-bounce-slow" style={{animationDelay: '0s'}}>
+              <div className="text-3xl font-black text-yellow-300">700+</div>
+              <div className="text-sm text-gray-300">Scholars Supported</div>
+            </div>
+            <div className="animate-bounce-slow" style={{animationDelay: '0.2s'}}>
+              <div className="text-3xl font-black text-orange-300">50+</div>
+              <div className="text-sm text-gray-300">Villages Reached</div>
+            </div>
+            <div className="animate-bounce-slow" style={{animationDelay: '0.4s'}}>
+              <div className="text-3xl font-black text-red-300">12+</div>
+              <div className="text-sm text-gray-300">Districts Served</div>
+            </div>
           </div>
         </div>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-8 z-20 flex gap-2 justify-center w-full">
+        {/* Enhanced Slide Indicators */}
+        <div className="absolute bottom-12 z-20 flex gap-2 justify-center w-full animate-slideUp" style={{animationDelay: '0.9s'}}>
           {homeSlides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setHomeSlideIndex(idx)}
-              className={`w-3 h-3 rounded-full transition ${idx === homeSlideIndex ? 'bg-yellow-400 w-8' : 'bg-white/50'}`}
+              className={`rounded-full transition-all duration-500 ${idx === homeSlideIndex ? 'bg-yellow-400 w-8 h-3 shadow-lg shadow-yellow-400/50' : 'bg-white/40 w-3 h-3 hover:bg-white/60'}`}
             />
           ))}
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-4 z-20 flex justify-center w-full">
+          <div className="animate-bounce">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
         </div>
       </section>
 
